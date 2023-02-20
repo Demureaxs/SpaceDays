@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../dist/output.css" />
+    <script src="../js/space.js" defer></script>
+    <title>Space Birthday Pictures</title>
+  </head>
+  <body class="bg-gray-900 text-slate-200">
+    <header class="p-4 sticky top-0 z-10 border-b border-gray-600 bg-gray-900">
+      <div class="flex justify-between items-center max-w-screen-xl mx-auto">
+        <a href="../index.html" class="cursor-pointer">
+          <h1 class="text-4xl font-semibold">
+            <span class="font-bold text-yellow-500">Space</span>Days
+          </h1>
+        </a>
+
+        <nav class="flex space-x-6">
+          <!-- <a href="./pages/space.html">Birthdays in Space</a> -->
+
+          <!-- <a href="./pages/mars.html">Birthdays on Mars</a> -->
+          <!-- <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a> -->
+        </nav>
+      </div>
+    </header>
+    <main
+      class="min-h-[850px] flex flex-col md:flex-row max-w-screen-xl border-l border-r border-b border-gray-600 mx-auto rounded-b-md"
+    >
+      <div
+        class="md:block flex w-full md:w-[400px] md:border-r border-gray-600 p-6 space-y-6"
+      >
+        <div
+          class="md:space-y-6 text-sm flex w-full flex-col items-center justify-between md:justify-start gap-4 md:gap-0 md:text-xl"
+        >
+          <div
+            class="flex gap-4 w-full md:space-y-6 md:block items-center justify-center"
+          >
+            <input
+              id="input"
+              class="w-full p-4 md:p-4 text-gray-600 rounded-md"
+              type="date"
+              name="date"
+              value=""
+            />
+
+            <button
+              id="search"
+              class="search md:block btn-view bg-yellow-500 w-full p-4 text-center text-black font-bold rounded-md"
+              type="submit"
+              name="submit"
+            >
+              Search
+            </button>
+          </div>
+
+          <div class="flex gap-4 w-full">
+            <button
+              id="prev"
+              class="btn-prev text-center flex-1 bg-yellow-500 p-4 text-black font-bold rounded-md"
+            >
+              Previous
+            </button>
+
+            <button
+              id="next"
+              class="btn-next text-center flex-1 bg-yellow-500 p-4 text-black font-bold rounded-md"
+            >
+              Next
+            </button>
+          </div>
+          <form class="flex justify-start w-full space-x-6" action="#">
+            <div class="space-x-2">
+              <input type="radio" name="timespan" value="years" /><span
+                >Years</span
+              >
+            </div>
+            <div class="space-x-2">
+              <input type="radio" name="timespan" value="months" /><span
+                >Months</span
+              >
+            </div>
+            <div class="space-x-2">
+              <input type="radio" name="timespan" value="days" /><span
+                >Days</span
+              >
+            </div>
+          </form>
+        </div>
+
+        <p class="hidden md:block">
+          Welcome to spacedays enter your birthday and hit view to see all of
+          the pictures collected by NASA on your birthday since 1995.
+        </p>
+      </div>
+      <div class="flex-1 flex flex-col border-gray-400 p-6 space-y-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <h1 class="text-4xl" id="title"></h1>
+          <aside id="date"></aside>
+        </div>
+        <div class="flex-1 overflow-hidden flex justify-center items-center">
+          <img class="w-full object-cover" id="img" src="" alt="" />
+        </div>
+        <p id="info"></p>
+      </div>
+    </main>
+  </body>
+</html>
