@@ -122,8 +122,6 @@ function nextPrev(e) {
 
   input.value = formattedDate;
 
-  console.log(formattedDate);
-
   // set the url based on the planet selection
   if (selectPlanet === 'space') {
     url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${formattedDate}`;
@@ -135,7 +133,6 @@ function nextPrev(e) {
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (data.title) title.innerText = data.title;
         if (data.date) dateTaken.innerText = data.date;
         if (data.hdurl) image.src = data.hdurl;
