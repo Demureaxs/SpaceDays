@@ -14,8 +14,6 @@ let date;
 let selectPlanet;
 let url;
 
-if (!input.value) image.classList.add('hidden');
-
 // Search Button //////////////////////////////////////////////////////////////////////////
 
 btnSearch.addEventListener('click', getFirstBirthdayPic);
@@ -77,7 +75,7 @@ function getFirstBirthdayPic(e) {
                 Status: ${img.rover.status}
                 
                 Earth Date: ${img.earth_date}`;
-        if (input.value) image.classList.remove('hidden');
+        imagePromt = true;
       });
   }
 }
