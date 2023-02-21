@@ -14,6 +14,8 @@ let date;
 let selectPlanet;
 let url;
 
+if (!input.value) image.classList.add('hidden');
+
 // Search Button //////////////////////////////////////////////////////////////////////////
 
 btnSearch.addEventListener('click', getFirstBirthdayPic);
@@ -65,18 +67,19 @@ function getFirstBirthdayPic(e) {
       .then(res => res.json())
       .then(data => {
         const img = data.photos[Math.trunc(Math.random() * data.photos.length)];
-        console.log(data.photos[0]);
+
         title.innerText = img.rover.name;
         dateTaken.innerText = `Sol: ${img.sol}`;
         image.src = img.img_src;
         info.innerText = `Name: ${img.camera.full_name}
-        Landing Date: ${img.rover.landing_date}
-        Launch Date: ${img.rover.launch_date}
-        Status: ${img.rover.status}
-        
-        Earth Date: ${img.earth_date}`;
+                Landing Date: ${img.rover.landing_date}
+                Launch Date: ${img.rover.launch_date}
+                Status: ${img.rover.status}
+                
+                Earth Date: ${img.earth_date}`;
       });
   }
+  if (input.value) image.classList.remove('hidden');
 }
 
 // NEXT/PREVIOUS buttons //////////////////////////////////////////////////////////////////////////
@@ -146,7 +149,7 @@ function nextPrev(e) {
       .then(data => {
         // sets image to the object containing the images (randomly selected)
         const img = data.photos[Math.trunc(Math.random() * data.photos.length)];
-        console.log(data.photos[0]);
+
         title.innerText = img.rover.name;
         dateTaken.innerText = `Sol: ${img.sol}`;
         image.src = img.img_src;
