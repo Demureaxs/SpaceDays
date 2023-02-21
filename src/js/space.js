@@ -7,19 +7,29 @@ const dateTaken = document.querySelector('#date');
 const btnSearch = document.querySelector('#search');
 const btnPrev = document.querySelector('#prev');
 const btnNext = document.querySelector('#next');
+const input = document.querySelector('#input');
 
 let birthDay;
 let date;
+let selectPlanet;
+let url;
+
+fetch(
+  'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2022-1-1&api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k'
+)
+  .then(res => res.json())
+  .then(data => console.log(data));
+
+// Search Button //////////////////////////////////////////////////////////////////////////
 
 btnSearch.addEventListener('click', getFirstBirthdayPic);
 
 function getFirstBirthdayPic(e) {
   e.preventDefault();
 
-  const input = document.querySelector('#input');
-
   birthDay = input.value;
   date = new Date(birthDay);
+  selectPlanet = document.querySelector('input[name="planet"]:checked').value;
 
   if (+birthDay.split('-').join('') < 19950620) {
     birthDay = birthDay.split('-');
@@ -27,17 +37,15 @@ function getFirstBirthdayPic(e) {
     birthDay = birthDay.join('-');
   }
 
-  let url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${birthDay}`;
-  console.log(birthDay);
-
-  let altUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k
-
-  `;
+  //   if (selectPlanet === 'space') {
+  url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${birthDay}`;
+  //   } else if (selectPlanet === 'mars') {
+  // url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${birthDay}&api_key=api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k`;
+  //   }
 
   fetch(url)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       if (data.title) title.innerText = data.title;
       if (data.date) dateTaken.innerText = data.date;
       if (data.hdurl) image.src = data.hdurl;
@@ -49,6 +57,8 @@ function getFirstBirthdayPic(e) {
       title.innerText = 'We are sorry, no images found on this date';
     });
 }
+
+// NEXT/PREVIOUS buttons //////////////////////////////////////////////////////////////////////////
 
 btnNext.addEventListener('click', nextPrev);
 btnPrev.addEventListener('click', nextPrev);
@@ -78,14 +88,28 @@ function nextPrev(e) {
     }
   }
 
+  selectPlanet = document.querySelector('input[name="planet"]:checked').value;
+
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let day = date.getDate();
 
   // need to change for mars
-  let formattedDate = `${year}-${String(month).padStart(2, 0)}-${String(
-    day
-  ).padStart(2, 0)}`;
+  let formattedDate = selectFormat();
+
+  // selects date format based on planet selection
+  function selectFormat() {
+    if (selectPlanet === 'space') {
+      return `${year}-${String(month).padStart(2, 0)}-${String(day).padStart(
+        2,
+        0
+      )}`;
+    } else if (selectPlanet === 'mars') {
+      return `${year}-${String(month)}-${String(day)}`;
+    }
+  }
+
+  console.log(formattedDate);
 
   const url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${formattedDate}`;
 
