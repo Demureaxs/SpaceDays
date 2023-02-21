@@ -44,13 +44,26 @@ function getFirstBirthdayPic(e) {
     });
 }
 
-btnNext.addEventListener('click', e => {
+btnNext.addEventListener('click', nextPrev);
+btnPrev.addEventListener('click', nextPrev);
+
+function nextPrev(e) {
   e.preventDefault();
 
-  console.log(new Date().toString());
+  const selection = +document.querySelector('input[name="timespan"]:checked')
+    .value;
+  console.log(selection);
 
   birthDay = birthDay.split('-');
-  birthDay[0]++;
+  if (e.target.innerText === 'Previous') {
+    if (birthDay[selection] > 1) {
+      birthDay[selection]--;
+    } else {
+      birdDay[selection - 1]--;
+    }
+  } else {
+    birthDay[selection]++;
+  }
   birthDay = birthDay.join('-');
 
   const url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${birthDay}`;
@@ -64,4 +77,4 @@ btnNext.addEventListener('click', e => {
       if (data.hdurl) image.src = data.hdurl;
       if (data.explanation) info.innerText = data.explanation;
     });
-});
+}

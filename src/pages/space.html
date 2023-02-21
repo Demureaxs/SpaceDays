@@ -34,8 +34,9 @@
         class="md:block flex w-full md:w-[400px] md:border-r border-gray-600 p-6 space-y-6"
       >
         <div
-          class="md:space-y-6 text-sm flex w-full flex-col items-center justify-between md:justify-start gap-4 md:gap-0 md:text-xl"
+          class="md:space-y-6 text-sm flex w-full flex-col items-start justify-between md:justify-start gap-4 md:gap-0 md:text-xl"
         >
+          <h2>Enter your Birthday:</h2>
           <div
             class="flex gap-4 w-full md:space-y-6 md:block items-center justify-center"
           >
@@ -73,21 +74,22 @@
             </button>
           </div>
           <form class="flex justify-start w-full space-x-6" action="#">
-            <div class="space-x-2">
-              <input type="radio" name="timespan" value="years" /><span
-                >Years</span
-              >
-            </div>
-            <div class="space-x-2">
-              <input type="radio" name="timespan" value="months" /><span
+            <label class="space-x-2 cursor-pointer">
+              <input
+                type="radio"
+                name="timespan"
+                value="0"
+                checked="checked"
+              /><span>Years</span>
+            </label>
+            <label class="space-x-2 cursor-pointer">
+              <input type="radio" name="timespan" value="1" /><span
                 >Months</span
               >
-            </div>
-            <div class="space-x-2">
-              <input type="radio" name="timespan" value="days" /><span
-                >Days</span
-              >
-            </div>
+            </label>
+            <label class="space-x-2 cursor-pointer">
+              <input type="radio" name="timespan" value="2" /><span>Days</span>
+            </label>
           </form>
         </div>
 
@@ -97,9 +99,9 @@
         </p>
       </div>
       <div class="flex-1 flex flex-col border-gray-400 p-6 space-y-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex flex-col justify-between items-start gap-3">
           <h1 class="text-4xl" id="title"></h1>
-          <aside id="date"></aside>
+          <aside class="" id="date"></aside>
         </div>
         <div class="flex-1 overflow-hidden flex justify-center items-center">
           <img class="w-full object-cover" id="img" src="" alt="" />
