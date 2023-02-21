@@ -77,9 +77,9 @@ function getFirstBirthdayPic(e) {
                 Status: ${img.rover.status}
                 
                 Earth Date: ${img.earth_date}`;
+        if (input.value) image.classList.remove('hidden');
       });
   }
-  if (input.value) image.classList.remove('hidden');
 }
 
 // NEXT/PREVIOUS buttons //////////////////////////////////////////////////////////////////////////
