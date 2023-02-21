@@ -115,19 +115,11 @@ function nextPrev(e) {
   let day = date.getDate();
 
   // assigns the output data of selectFormat to the formatted data variable
-  let formattedDate = selectFormat();
+  let formattedDate = `${year}-${String(month).padStart(2, 0)}-${String(
+    day
+  ).padStart(2, 0)}`;
 
-  // selects date format based on planet selection
-  function selectFormat() {
-    if (selectPlanet === 'space') {
-      return `${year}-${String(month).padStart(2, 0)}-${String(day).padStart(
-        2,
-        0
-      )}`;
-    } else if (selectPlanet === 'mars') {
-      return `${year}-${String(month)}-${String(day)}`;
-    }
-  }
+  input.value = formattedDate;
 
   console.log(formattedDate);
 
