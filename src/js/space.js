@@ -9,6 +9,7 @@ const btnPrev = document.querySelector('#prev');
 const btnNext = document.querySelector('#next');
 
 let birthDay;
+let date;
 
 btnSearch.addEventListener('click', getFirstBirthdayPic);
 
@@ -18,6 +19,7 @@ function getFirstBirthdayPic(e) {
   const input = document.querySelector('#input');
 
   birthDay = input.value;
+  date = new Date(birthDay);
 
   if (+birthDay.split('-').join('') < 19950620) {
     birthDay = birthDay.split('-');
@@ -25,8 +27,12 @@ function getFirstBirthdayPic(e) {
     birthDay = birthDay.join('-');
   }
 
-  const url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${birthDay}`;
+  let url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${birthDay}`;
   console.log(birthDay);
+
+  let altUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k
+
+  `;
 
   fetch(url)
     .then(response => response.json())
@@ -50,23 +56,38 @@ btnPrev.addEventListener('click', nextPrev);
 function nextPrev(e) {
   e.preventDefault();
 
-  const selection = +document.querySelector('input[name="timespan"]:checked')
+  const selectDate = +document.querySelector('input[name="timespan"]:checked')
     .value;
-  console.log(selection);
+  console.log(selectDate);
 
-  birthDay = birthDay.split('-');
   if (e.target.innerText === 'Previous') {
-    if (birthDay[selection] > 1) {
-      birthDay[selection]--;
-    } else {
-      birdDay[selection - 1]--;
+    if (selectDate === 0) {
+      date.setFullYear(date.getFullYear() - 1);
+    } else if (selectDate === 1) {
+      date.setMonth(date.getMonth() - 1);
+    } else if (selectDate === 2) {
+      date.setDate(date.getDate() - 1);
     }
-  } else {
-    birthDay[selection]++;
+  } else if (e.target.innerText === 'Next') {
+    if (selectDate === 0) {
+      date.setFullYear(date.getFullYear() + 1);
+    } else if (selectDate === 1) {
+      date.setMonth(date.getMonth() + 1);
+    } else if (selectDate === 2) {
+      date.setDate(date.getDate() + 1);
+    }
   }
-  birthDay = birthDay.join('-');
 
-  const url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${birthDay}`;
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+
+  // need to change for mars
+  let formattedDate = `${year}-${String(month).padStart(2, 0)}-${String(
+    day
+  ).padStart(2, 0)}`;
+
+  const url = `https://api.nasa.gov/planetary/apod?api_key=TJWZinLK37XHbWaEjAH2rsi2NlpXcCH4t0WEHY2k&date=${formattedDate}`;
 
   fetch(url)
     .then(res => res.json())

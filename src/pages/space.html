@@ -73,29 +73,54 @@
               Next
             </button>
           </div>
-          <form class="flex justify-start w-full space-x-6" action="#">
-            <label class="space-x-2 cursor-pointer">
-              <input
-                type="radio"
-                name="timespan"
-                value="0"
-                checked="checked"
-              /><span>Years</span>
-            </label>
-            <label class="space-x-2 cursor-pointer">
-              <input type="radio" name="timespan" value="1" /><span
-                >Months</span
-              >
-            </label>
-            <label class="space-x-2 cursor-pointer">
-              <input type="radio" name="timespan" value="2" /><span>Days</span>
-            </label>
-          </form>
+          <div class="border-b border-gray-600 w-full pb-4">
+            <h2>Select Increment/Decrement:</h2>
+            <form class="flex justify-start w-full space-x-6" action="#">
+              <label class="space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="timespan"
+                  value="0"
+                  checked="checked"
+                /><span>Years</span>
+              </label>
+              <label class="space-x-2 cursor-pointer">
+                <input type="radio" name="timespan" value="1" /><span
+                  >Months</span
+                >
+              </label>
+              <label class="space-x-2 cursor-pointer">
+                <input type="radio" name="timespan" value="2" /><span
+                  >Days</span
+                >
+              </label>
+            </form>
+          </div>
+          <div class="border-b border-gray-600 w-full pb-4">
+            <h2>Select Destination:</h2>
+            <form class="flex justify-start w-full space-x-6" action="#">
+              <label class="space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="planet"
+                  value="space"
+                  checked="checked"
+                /><span>Space</span>
+              </label>
+              <label class="space-x-2 cursor-pointer">
+                <input type="radio" name="planet" value="mars" /><span
+                  >Mars</span
+                >
+              </label>
+            </form>
+          </div>
         </div>
 
         <p class="hidden md:block">
           Welcome to spacedays enter your birthday and hit view to see all of
-          the pictures collected by NASA on your birthday since 1995.
+          the pictures collected by NASA on your birthday since 1995. Failing
+          that just select a day and journey through NASA's documentation of
+          space.
         </p>
       </div>
       <div class="flex-1 flex flex-col border-gray-400 p-6 space-y-6">
